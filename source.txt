@@ -1,0 +1,27 @@
+Private Sub reg_Click()
+If regcode.Text = "3620" Then
+Open "graphix-reg.dll" For Output As #1
+Print #1, "!$!%(@^%#%*(&(#@#*$^@^$##*#@&(%)@**$!(&!^(#((#&%!)"
+Close #1
+Graph.Enabled = True
+Graph.Caption = "Graphi X Pro"
+showgraph.Enabled = True
+reg.Enabled = False
+regcode.Text = ""
+Else
+MsgBox "The code you entered does not match your version!"
+End If
+End Sub
+
+Private Sub regcode_Change()
+If Val(regcode.Text) > 1000 Then reg.Enabled = True Else reg.Enabled = False
+End Sub
+
+Private Sub showgraph_Click()
+Dim g, a
+g = Val(grd.Text) 'which stands for gradient
+a = Val(add.Text)
+For vx = -10000 To 10000
+PSet (vx + 2280, 3000 - g * vx - 1440 - a), vbBlue
+Next vx
+End Sub
